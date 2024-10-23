@@ -1,16 +1,24 @@
 body {
     background-color: #fff;
     margin: 20px;
-    font-family: Roboto, sans-serif;
+    font-family: "Source Sans 3", Roboto, Helvetica, sans-serif;
+    font-weight: 300;
 }
 
 h1, h2 {
     color: #333;
+    font-weight: 400;
 }
 
 hr {
-    width: 70%;
+    border-top: solid 1px;
     margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.dash-hr {
+    border-top: dashed 1px;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -22,6 +30,7 @@ hr {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
+    text-align: center;
 }
 
 .video-container:hover {
@@ -29,18 +38,38 @@ hr {
 }
 
 .section {
-    width: 70%;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
 }
 
 .section p {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .banner-img {
     display: block;
     margin: 0 auto;
-    width: 70%;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 25px; /* Rounded corners */
+    text-decoration: none;
+    color: #333; /* Text color */
+    background-color: white; /* Primary button color */
+    border: 2px solid; /* Border color */
+    border-color: #333;
+    transition: border-color 0.3s ease, color 0.3s ease; /* Hover effect */
+}
+
+.button:hover {
+    border-color: #7fd1ae; /* Background color on hover */
+    color: #7fd1ae;
+}
+
+.CTA {
+    margin: 0 auto;
 }
