@@ -1,0 +1,46 @@
+body {
+    background-color: #fff;
+    margin: 20px;
+    font-family: Roboto, sans-serif;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+hr {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.video-container {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.video-container:hover {
+    transform: scale(1.05);
+}
+
+.section {
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.section p {
+    font-size: 1.5rem;
+}
+
+.banner-img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+}
