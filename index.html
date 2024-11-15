@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SSV2A</title>
+    <link rel="icon" href="./media/image/tickets.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="container">
+    <!-- Floating Navigation Menu -->
+    <nav class="floating-nav d-none d-md-block">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link active" href="#title">Title</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#abstract">Abstract</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#i2a">Image to Audio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#v2a">Video to Audio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#mm">Multimodal Composition</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#disclaimers">Disclaimers</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+    <h1 class="text-center mb-2" id="title">Gotta Hear Them All: Sound Source-Aware Vision to Audio Generation<img src="./media/image/tickets.gif" style="width: 6rem; display: inline-block; vertical-align: bottom;"></h1>
+
+    <div class="text-center mb-2">
+        (Temporarily Anonymized for Submission)
+    </div>
+
+    <div class="CTA row text-center">
+        <div class="col-4 mb-3"><a href="#" class="button w-100"><i class="fas fa-file-alt"></i> Paper (Coming Soon)</a></div>
+        <div class="col-4 mb-3"><a href="#" class="button w-100"><i class="fa-brands fa-github"></i> Code (Coming Soon)</a></div>
+        <div class="col-4 mb-3"><a href="https://ef734a6d9232.ngrok.app/" class="button w-100">&#x1F917; Demo</a></div>
+    </div>
+
+    <img class="mt-4 mb-4 teaser-img" src="./media/image/teaser.jpg">
+
+    <p class="text-center">
+        <br>We present <b>SSV2A</b>, a sound source-aware vision-to-audio method that generates <b>high-quality</b> audio clips given a still image or silent video. Besides quality, we also demonstrate the <b>intuitive contrability</b> offered by our pipeline in flexibly composing <b>multimodal</b> sound source prompts from text, vision and audio as generation conditions.
+
+        <br><br>For best experience, please wear headphones and zoom in to examine the samples in <b>Firefox</b> or <b>Chrome</b>. We welcome you to play directly with SSV2A via our demo link!
+    </p>
+
+    <hr>
+
+    <div class="section">
+        <h2 class="mb-4" id="abstract">Abstract</h2>
+        <img class="mt-4 mb-4 banner-img img-fluid" src="./media/image/pipeline.jpg">
+        <p>
+            Vision-to-audio (V2A) synthesis has broad applications in multimedia. Recent advancements of V2A methods have made it possible to generate relevant audios from inputs of videos or still images. However, the immersiveness and expressiveness of the generation are limited. One possible problem is that existing methods solely rely on the global scene and overlook details of local sounding objects (i.e., sound sources). To address this issue, we propose a <b>Sound Source-Aware V2A (SSV2A)</b> generator. SSV2A is able to locally <b>perceive</b> multimodal sound sources from a scene with visual detection and cross-modality translation. It then contrastively learns a Cross-Modal Sound Source (CMSS) Manifold to semantically <b>disambiguate</b> each source. Finally, we attentively <b>mix</b> their CMSS semantics into a rich audio representation, from which a pretrained audio generator outputs the sound. To model the CMSS manifold, we curate a novel single-sound-source visual-audio dataset VGGS3 from VGGSound. We also design a Sound Source Matching Score to measure localized audio relevance. This is the first work to address V2A generation at the sound-source level. Extensive experiments show that SSV2A surpasses state-of-the-art methods in both generation fidelity and relevance. We further demonstrate SSV2A's ability to achieve intuitive V2A control by compositing vision, text and audio sound sources.
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="mt-4">
+        <h2 class="mb-4" id="i2a">Image-to-Audio Generation</h2>
+        <p>
+            Given an image, SSV2A generates audio clips based on the detected visual audio sources with high fidelity and relevance. We demonstrate our method's generation results against baselines here.
+        </p>
+
+        <!-- Sample 0 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/guitar_lady.png">
+                    <audio controls><source src="./media/audio/I2A/gt/guitar_lady.wav" type="audio/wav"></audio>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/guitar_lady.png">
+                    <audio controls><source src="./media/audio/I2A/SSV2A/guitar_lady.wav" type="audio/wav"></audio>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/guitar_lady.png">
+                    <audio controls><source src="./media/audio/I2A/V2A/guitar_lady.wav" type="audio/wav"></audio>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/guitar_lady.png">
+                    <audio controls><source src="./media/audio/I2A/Diff-Foley/guitar_lady.wav" type="audio/wav"></audio>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/guitar_lady.png">
+                    <audio controls><source src="./media/audio/I2A/SH/guitar_lady.wav" type="audio/wav"></audio>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/guitar_lady.png">
+                    <audio controls><source src="./media/audio/I2A/Im2Wav/guitar_lady.wav" type="audio/wav"></audio>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 1 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/talkshow.png">
+                    <audio controls><source src="./media/audio/I2A/gt/talkshow.wav" type="audio/wav"></audio>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/talkshow.png">
+                    <audio controls><source src="./media/audio/I2A/SSV2A/talkshow.wav" type="audio/wav"></audio>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/talkshow.png">
+                    <audio controls><source src="./media/audio/I2A/V2A/talkshow.wav" type="audio/wav"></audio>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/talkshow.png">
+                    <audio controls><source src="./media/audio/I2A/Diff-Foley/talkshow.wav" type="audio/wav"></audio>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/talkshow.png">
+                    <audio controls><source src="./media/audio/I2A/SH/talkshow.wav" type="audio/wav"></audio>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/talkshow.png">
+                    <audio controls><source src="./media/audio/I2A/Im2Wav/talkshow.wav" type="audio/wav"></audio>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 2 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/bells.png">
+                    <audio controls><source src="./media/audio/I2A/gt/bells.wav" type="audio/wav"></audio>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/bells.png">
+                    <audio controls><source src="./media/audio/I2A/SSV2A/bells.wav" type="audio/wav"></audio>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/bells.png">
+                    <audio controls><source src="./media/audio/I2A/V2A/bells.wav" type="audio/wav"></audio>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/bells.png">
+                    <audio controls><source src="./media/audio/I2A/Diff-Foley/bells.wav" type="audio/wav"></audio>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/bells.png">
+                    <audio controls><source src="./media/audio/I2A/SH/bells.wav" type="audio/wav"></audio>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/bells.png">
+                    <audio controls><source src="./media/audio/I2A/Im2Wav/bells.wav" type="audio/wav"></audio>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 3 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/pigeons.png">
+                    <audio controls><source src="./media/audio/I2A/gt/pigeons.wav" type="audio/wav"></audio>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/pigeons.png">
+                    <audio controls><source src="./media/audio/I2A/SSV2A/pigeons.wav" type="audio/wav"></audio>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/pigeons.png">
+                    <audio controls><source src="./media/audio/I2A/V2A/pigeons.wav" type="audio/wav"></audio>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/pigeons.png">
+                    <audio controls><source src="./media/audio/I2A/Diff-Foley/pigeons.wav" type="audio/wav"></audio>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/pigeons.png">
+                    <audio controls><source src="./media/audio/I2A/SH/pigeons.wav" type="audio/wav"></audio>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/pigeons.png">
+                    <audio controls><source src="./media/audio/I2A/Im2Wav/pigeons.wav" type="audio/wav"></audio>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 4 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/canon.png">
+                    <audio controls><source src="./media/audio/I2A/gt/canon.wav" type="audio/wav"></audio>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/canon.png">
+                    <audio controls><source src="./media/audio/I2A/SSV2A/canon.wav" type="audio/wav"></audio>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/canon.png">
+                    <audio controls><source src="./media/audio/I2A/V2A/canon.wav" type="audio/wav"></audio>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/canon.png">
+                    <audio controls><source src="./media/audio/I2A/Diff-Foley/canon.wav" type="audio/wav"></audio>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/canon.png">
+                    <audio controls><source src="./media/audio/I2A/SH/canon.wav" type="audio/wav"></audio>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img src="./media/image/I2A/canon.png">
+                    <audio controls><source src="./media/audio/I2A/Im2Wav/canon.wav" type="audio/wav"></audio>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <div class="text-center col-4 mb-3" style="margin: 0 auto;"><a href="samples.html" class="button w-100">More Samples >>></a></div>
+
+    </div>
+
+    <hr>
+
+    <div class="mt-4">
+        <h2 class="mb-4" id="v2a">Video-to-Audio Generation</h2>
+        <p>
+            Given a video of arbitrary length, SSV2A can generate a highly immersive audio clip to accompany it.
+        </p>
+
+        <!-- Sample 0 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/gt/erhu.mp4" type="video/mp4">
+                    </video>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SSV2A/erhu.mp4" type="video/mp4">
+                    </video>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/V2A/erhu.mp4" type="video/mp4">
+                    </video>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Diff-Foley/erhu.mp4" type="video/mp4">
+                    </video>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SH/erhu.mp4" type="video/mp4">
+                    </video>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Im2Wav/erhu.mp4" type="video/mp4">
+                    </video>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 1 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/gt/cats.mp4" type="video/mp4">
+                    </video>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SSV2A/cats.mp4" type="video/mp4">
+                    </video>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/V2A/cats.mp4" type="video/mp4">
+                    </video>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Diff-Foley/cats.mp4" type="video/mp4">
+                    </video>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SH/cats.mp4" type="video/mp4">
+                    </video>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Im2Wav/cats.mp4" type="video/mp4">
+                    </video>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 2 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/gt/show.mp4" type="video/mp4">
+                    </video>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SSV2A/show.mp4" type="video/mp4">
+                    </video>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/V2A/show.mp4" type="video/mp4">
+                    </video>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Diff-Foley/show.mp4" type="video/mp4">
+                    </video>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SH/show.mp4" type="video/mp4">
+                    </video>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Im2Wav/show.mp4" type="video/mp4">
+                    </video>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 3 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/gt/sheep.mp4" type="video/mp4">
+                    </video>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SSV2A/sheep.mp4" type="video/mp4">
+                    </video>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/V2A/sheep.mp4" type="video/mp4">
+                    </video>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Diff-Foley/sheep.mp4" type="video/mp4">
+                    </video>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SH/sheep.mp4" type="video/mp4">
+                    </video>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Im2Wav/sheep.mp4" type="video/mp4">
+                    </video>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 4 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/gt/cello.mp4" type="video/mp4">
+                    </video>
+                    <div>Ground Truth</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SSV2A/cello.mp4" type="video/mp4">
+                    </video>
+                    <div>Ours</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/V2A/cello.mp4" type="video/mp4">
+                    </video>
+                    <div>V2A-Mapper</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Diff-Foley/cello.mp4" type="video/mp4">
+                    </video>
+                    <div>Diff-Foley</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/SH/cello.mp4" type="video/mp4">
+                    </video>
+                    <div>Seeing and Hearing</div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="video-container">
+                    <video width="100%" height="100%" controls>
+                        <source src="./media/video/Im2Wav/cello.mp4" type="video/mp4">
+                    </video>
+                    <div>Im2Wav</div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <div class="text-center col-4 mb-3" style="margin: 0 auto;"><a href="samples.html" class="button w-100">More Samples >>></a></div>
+
+    </div>
+
+    <hr>
+
+    <div class="mt-4">
+        <h2 class="mb-4" id="mm">Generation Control - Multimodal Sound Source Composition</h2>
+
+        <img class="mb-4 mm-img" src="./media/image/compose.jpg">
+        
+        <p>
+            SSV2A supports <b>multimodal sound source composition</b>. This means you can supply any source prompts as text, vision or audio, and mix them together to generate audio contents. In this section, we demonstrate the high controllability our method can achieve in various usage scenarios.
+        </p>
+
+        <h3 class="mt-5 mb-2">Visual Composition</h3>
+        <p>
+            By combining visual sources, you can synthesize audio clips tailored to the desired generation result.
+        </p>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-6">
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/drum.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/drum.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+
+                <hr class="dash-hr">
+
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/drum.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/guitar.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/drum_guitar.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+
+                <hr class="dash-hr">
+
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/drum.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/guitar.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/violin.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/drum_guitar_violin.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+
+                <hr class="dash-hr">
+
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/drum.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/guitar.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/violin.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/bass.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/drum_guitar_bass_violin.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+
+                <hr class="dash-hr">
+
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/drum.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/guitar.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/violin.png">
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/bass.png">
+                        </div>
+                        <div class="col-lg-3 col-md-5 col-sm-7">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/singer.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/drum_guitar_bass_violin_sing.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-3 col-md-4 col-sm-5">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/hiker.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/hiker.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+
+                <hr class="dash-hr">
+
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/hiker.png">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/beach.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/hiker_beach.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+
+                <hr class="dash-hr">
+
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/hiker.png">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/waterfall.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/hiker_waterfall.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+
+                <hr class="dash-hr">
+
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/hiker.png">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/thunder.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/hiker_thunder.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+
+                <hr class="dash-hr">
+
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/hiker.png">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/thunder.png">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/waterfall.png">
+                        </div>
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <audio controls class="w-50">
+                                <source src="./media/audio/compose/visual/hiker_thunder_waterfall.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-5 mb-2">Visual + Textual Composition</h3>
+        <p>
+            With multimodal source composition, you can generate audio clips from visual sources with fine-grained textual style control.
+        </p>
+
+        <!-- Sample 0 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/car.png">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/car.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/car.png">
+                    <div class="text-tag">crowd cheering</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/car_crowd.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/car.png">
+                    <div class="text-tag">in-door</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/car_indoor.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/car.png">
+                    <div class="text-tag">cinematic</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/car_cinematic.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/car.png">
+                    <div class="text-tag">cinematic</div>
+                    <div class="text-tag">rain</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/car_cinematic_rain.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/car.png">
+                    <div class="text-tag">podcast</div>
+                    <div class="text-tag">radio</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/car_podcast.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 1 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/man.png">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/man.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/man.png">
+                    <div class="text-tag">police officer</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/man_police.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/man.png">
+                    <div class="text-tag">lecture hall</div>
+                    <div class="text-tag">professor</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/man_prof.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/man.png">
+                    <div class="text-tag">inauguration</div>
+                    <div class="text-tag">speaker</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/man_inaug.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/man.png">
+                    <div class="text-tag">cinematic</div>
+                    <div class="text-tag">cafeteria</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/man_cafe_cinematic.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/man.png">
+                    <div class="text-tag">studio ambient</div>
+                    <div class="text-tag">whisper</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/man_whisper_studio.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <hr class="dash-hr">
+
+        <!-- Sample 2 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/clap.png">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/clap.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/clap.png">
+                    <div class="text-tag">music</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/clap_music.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/clap.png">
+                    <div class="text-tag">comedy</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/clap_comedy.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/clap.png">
+                    <div class="text-tag">speech</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/clap_speech.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/clap.png">
+                    <div class="text-tag">construction site</div>
+                    <div class="text-tag">workers</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/clap_cons.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_text/clap.png">
+                    <div class="text-tag">soldiers</div>
+                    <div class="text-tag">war movie</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_text/clap_soldiers.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-5 mb-2">Visual + Audio Composition</h3>
+        <p>
+            You can also compose audio clips with audio sources as conditions. However, SSV2A is not as sensitive to audio conditions as visual/text sources because it ignores the CLIP semantics for audio modality.
+        </p>
+
+        <!-- Sample 0 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_audio/dog.png">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/dog.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_audio/dog.png">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/dogs.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/dog_dog.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_audio/dog.png">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/children.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/dog_children.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_audio/dog.png">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/bird.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/dog_bird.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual_audio/dog.png">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/man.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/visual_audio/dog_man.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="mt-5 mb-2">Visual + Text + Audio Composition</h3>
+        <p>
+            Putting it altogether, SSV2A supports a wide range of audio sysnthesis controls with multimodal prompts.
+        </p>
+
+        <div class="row g-4 justify-content-center">
+            <!-- Sample 0 -->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/drum.png">
+                    <div class="text-tag">piano</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/orch.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/drum_piano_orch.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <!-- Sample 1 -->
+            <div class="col-lg-2 col-md-4 col-sm-6">
+                <div class="image-container">
+                    <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/gun.png">
+                    <div class="text-tag">war movie</div>
+                    <div class="text-tag">combat</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/canon.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/war_movie.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <!-- Sample 2 -->
+            <div class="col-lg-4 col-md-8 col-sm-12">
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/bball_court.png">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/stadium.png">
+                        </div>
+                    </div>
+                    <div class="text-tag">radio</div>
+                    <div class="text-tag">podcast</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/explain.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/basketball.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <!-- Sample 3 -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-4">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/bird.png">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/bird1.png">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/thunder.png">
+                        </div>
+                    </div>
+                    <div class="text-tag">raining</div>
+                    <div class="text-tag">storm</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/bird.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/rain_bird.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <!-- Sample 4 -->
+            <div class="col-lg-10 col-md-12 col-sm-12">
+                <div class="image-container">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-2">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/drum.png">
+                        </div>
+                        <div class="col-2">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/violin.png">
+                        </div>
+                        <div class="col-2">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/sax.png">
+                        </div>
+                        <div class="col-2">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/piano.png">
+                        </div>
+                        <div class="col-2">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/all/choir.png">
+                        </div>
+                    </div>
+                    <div class="text-tag">concert</div>
+                    <div class="text-tag">music hall</div>
+                    <div class="text-tag">beautiful melody</div>
+                    <div class="text-tag">singing choir</div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/choir.wav" type="audio/wav">
+                    </audio>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/chorus.wav" type="audio/wav">
+                    </audio>
+                    <hr class="dash-hr">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/all/concert.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            <!-- Sample 5 -->
+            <div class="col-lg-10 col-md-12 col-sm-12">
+                <div class="image-container" style="background-image: linear-gradient(to right bottom, #051937, #004363, #007287, #36a29f, #7fd1ae); padding: 1rem;">
+                    <div class="mt-4 mb-4" style="color: white;">We dedicate this sample to Debussy. Thank you for capturing &#x1F319; with audio :)
+                    </div>
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-3">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/debussy/moon.jpg">
+                        </div>
+                        <div class="col-3">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/debussy/piano.jpg">
+                        </div>
+                        <div class="col-3">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/debussy/bird.jpg">
+                        </div>
+                        <div class="col-3">
+                            <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/debussy/sea.jpg">
+                        </div>
+                    </div>
+                    <div class="mt-2 mb-2">
+                        <div class="text-tag">Debussy</div>
+                        <div class="text-tag">ethereal</div>
+                        <div class="text-tag">impressionist</div>
+                    </div>
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/debussy/ClairdeLune.mp3" type="audio/mp3">
+                    </audio>
+                    <hr class="dash-hr" style="color: white;">
+                    <audio controls class="w-100">
+                            <source src="./media/audio/compose/debussy/debussy.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="mt-4 mb-4">
+        <h2 class="mb-4" id="disclaimers">Disclaimers</h2>
+        <p>
+            All media contents in this page are extracted from Internet with their <b>Creative Commons License</b> confirmed. As our work is anonymized due to a conference submission, please wait until further notice if you want to raise a copyright issue. We will respond as soon as possible and take according actions.
+        </p>
+
+        <p>
+            Attribution for the site icon: <a href="https://www.flaticon.com/free-animated-icons/festival" title="festival animated icons">Festival animated icons created by Freepik - Flaticon</a>.
+        </p>
+    </div>
+
+
+    <!-- Bootstrap JS (optional if not needed) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+</body>
+</html>
