@@ -40,6 +40,9 @@
           <a class="nav-link" href="#mm">Multimodal Composition</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="#comp">Composition Comparisons</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#disclaimers">Disclaimers</a>
         </li>
       </ul>
@@ -1229,6 +1232,188 @@
             </div>
         </div>
     </div>
+
+    <h3 class="mt-5 mb-2" id="comp">Comparison with Cascaded Composition</h3>
+    <p>
+        The most straightforward way to composite multimodal sound sources into a single audio is to generate an audio track for each source condition via video-to-audio or text-to-audio models and <b>overlay</b> them together. However, such a cascading audio synthesis system <b>lacks interaction, context and style awareness</b> when integrating multiple sound sources, which are keys to a convincing audio scene. We show with qualitative examples in this section that <b>our SSV2A composition achieves these features</b>.
+    </p>
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-4">
+            <h4>Interaction Awareness</h4>
+            <p>
+                We generate a drum-only audio clip and a bass-only clip with SSV2A. Simply overlaying these clips yields a mixed track with no instrument interactions. With our SSV2A composition, we are able to generate an appealing piece of drum-bass music with rich interactions.
+            </p>
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/drum.png">
+                    </div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-drum.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+            
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <img class="img-fluid" width="100%" height="100%" src="./media/audio/compose/visual/bass.png">
+                    </div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-bass.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="text-tag" style="background-color: #ab9aec;">Cascaded Overlay</div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-drum-bass.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="text-tag">SSV2A Composition</div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/drum-bass.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <h4>Context Awareness</h4>
+            <p>
+                We generate an audio clip of a talking man and another clip of police activities. The cascaded composition yields chaotic sounds as the police event context is not perceived. Our SSV2A composition successfully picks up this global cue and generates a police officer's voice followed by a gun loading/shooting sound to indicate police events.
+            </p>
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <img class="img-fluid" width="100%" height="100%" src="./media/image/I2A/explain.png">
+                    </div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-talk.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+            
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="text-tag" style="background-color: #cb9e56;">"Police"</div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-police.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="text-tag" style="background-color: #ab9aec;">Cascaded Overlay</div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-talk-police.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="text-tag">SSV2A Composition</div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/talk-police.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-4">
+            <h4>Style Awareness</h4>
+            <p>
+                We generate audio clips of a normal speech and an academic conference talk. Cascaded composition synthesizes an audio track with conflicting talkers and no conference room reverb. Our SSV2A composition transfers the speech style into a proper academic presentation with reverb.
+            </p>
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="col-lg-4 col-md-6 col-sm-8">
+                        <img class="img-fluid" width="100%" height="100%" src="./media/image/I2A/presentation.png">
+                    </div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-speech.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+            
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="text-tag" style="background-color: #cb9e56;">"Academic Conference"</div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-academic.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="text-tag" style="background-color: #ab9aec;">Cascaded Overlay</div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/solo-speech-academic.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+
+            <hr class="dash-hr">
+
+            <div class="image-container">
+                <div class="row g-2 justify-content-center">
+                    <div class="text-tag">SSV2A Composition</div>
+                </div>
+                <div class="row g-2 justify-content-center">
+                    <audio controls class="w-80">
+                            <source src="./media/audio/compose/compare/speech-academic.wav" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
 
     <hr>
 
