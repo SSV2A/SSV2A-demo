@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SSV2A</title>
+    <title>SS2A</title>
     <link rel="icon" href="./media/image/tickets.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,7 @@
 
     <!-- Content -->
     <div class="container">
-    <h1 class="text-center mb-2" id="title">Gotta Hear Them All: Sound Source-Aware Vision to Audio Generation<img src="./media/image/tickets.gif" style="width: 6rem; display: inline-block; vertical-align: bottom;"></h1>
+    <h1 class="text-center mb-2" id="title">Gotta Hear Them All: Sound Source-Aware Audio Generation<img src="./media/image/tickets.gif" style="width: 6rem; display: inline-block; vertical-align: bottom;"></h1>
 
     <div class="CTA row text-center">
         <div class="col-4 mb-4"><a href="#" class="button w-100"><i class="fas fa-file-alt"></i> Paper (Coming Soon)</a></div>
@@ -61,8 +61,8 @@
     <img class="mt-4 mb-4 teaser-img" src="./media/image/teaser.jpg">
 
     <p class="text-center">
-        <br>We present <b>SSV2A</b>, a sound source-aware vision-to-audio method that generates <b>high-quality</b> audio clips given a still image or silent video. Besides quality, we also demonstrate the <b>intuitive contrability</b> offered by our pipeline in flexibly composing <b>multimodal</b> sound source prompts from text, vision and audio as generation conditions.
-        <br><br>For best experience, please wear headphones and zoom in to examine the samples in <b>Firefox</b> or <b>Chrome</b>. We welcome you to play directly with SSV2A via our demo link. Have fun!
+        <br>We present <b>SS2A</b>, a sound source-aware vision-to-audio method that generates <b>high-quality</b> audio clips given a still image or silent video. Besides quality, we also demonstrate the <b>intuitive contrability</b> offered by our pipeline in flexibly composing <b>multimodal</b> sound source prompts from text, vision and audio as generation conditions.
+        <br><br>For best experience, please wear headphones and zoom in to examine the samples in <b>Firefox</b> or <b>Chrome</b>. We welcome you to play directly with SS2A via our demo link. Have fun!
     </p>
 
     <p style="font-size: 0.8rem;">
@@ -75,7 +75,7 @@
         <h2 class="mb-4" id="abstract">Abstract</h2>
         <img class="mt-4 mb-4 banner-img img-fluid" src="./media/image/pipeline.jpg">
         <p>
-            Vision-to-audio (V2A) synthesis has broad applications in multimedia. Recent advancements of V2A methods have made it possible to generate relevant audios from inputs of videos or still images. However, the immersiveness and expressiveness of the generation are limited. One possible problem is that existing methods solely rely on the global scene and overlook details of local sounding objects (i.e., sound sources). To address this issue, we propose a <b>Sound Source-Aware V2A (SSV2A)</b> generator. SSV2A is able to locally <b>perceive</b> multimodal sound sources from a scene with visual detection and cross-modality translation. It then contrastively learns a Cross-Modal Sound Source (CMSS) Manifold to semantically <b>disambiguate</b> each source. Finally, we attentively <b>mix</b> their CMSS semantics into a rich audio representation, from which a pretrained audio generator outputs the sound. To model the CMSS manifold, we curate a novel single-sound-source visual-audio dataset VGGS3 from VGGSound. We also design a Sound Source Matching Score to measure localized audio relevance. This is the first work to address V2A generation at the sound-source level. Extensive experiments show that SSV2A surpasses state-of-the-art methods in both generation fidelity and relevance. We further demonstrate SSV2A's ability to achieve intuitive V2A control by compositing vision, text and audio sound sources.
+            Vision-to-audio (V2A) synthesis has broad applications in multimedia. Recent advancements of V2A methods have made it possible to generate relevant audios from inputs of videos or still images. However, the immersiveness and expressiveness of the generation are limited. One possible problem is that existing methods solely rely on the global scene and overlook details of local sounding objects (i.e., sound sources). To address this issue, we propose a <b>Sound Source-Aware V2A (SS2A)</b> generator. SS2A is able to locally <b>perceive</b> multimodal sound sources from a scene with visual detection and cross-modality translation. It then contrastively learns a Cross-Modal Sound Source (CMSS) Manifold to semantically <b>disambiguate</b> each source. Finally, we attentively <b>mix</b> their CMSS semantics into a rich audio representation, from which a pretrained audio generator outputs the sound. To model the CMSS manifold, we curate a novel single-sound-source visual-audio dataset VGGS3 from VGGSound. We also design a Sound Source Matching Score to measure localized audio relevance. This is the first work to address V2A generation at the sound-source level. Extensive experiments show that SS2A surpasses state-of-the-art methods in both generation fidelity and relevance. We further demonstrate SS2A's ability to achieve intuitive V2A control by compositing vision, text and audio sound sources.
         </p>
     </div>
 
@@ -84,7 +84,7 @@
     <div class="mt-4">
         <h2 class="mb-4" id="i2a">Image-to-Audio Generation</h2>
         <p>
-            Given an image, SSV2A generates audio clips based on the detected visual audio sources with high fidelity and relevance. We demonstrate our method's generation results against baselines here.
+            Given an image, SS2A generates audio clips based on the detected visual audio sources with high fidelity and relevance. We demonstrate our method's generation results against baselines here.
         </p>
 
         <!-- Sample 0 -->
@@ -99,7 +99,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="image-container">
                     <img src="./media/image/I2A/guitar_lady.png">
-                    <audio controls><source src="./media/audio/I2A/SSV2A/guitar_lady.wav" type="audio/wav"></audio>
+                    <audio controls><source src="./media/audio/I2A/SS2A/guitar_lady.wav" type="audio/wav"></audio>
                     <div>Ours</div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="image-container">
                     <img src="./media/image/I2A/talkshow.png">
-                    <audio controls><source src="./media/audio/I2A/SSV2A/talkshow.wav" type="audio/wav"></audio>
+                    <audio controls><source src="./media/audio/I2A/SS2A/talkshow.wav" type="audio/wav"></audio>
                     <div>Ours</div>
                 </div>
             </div>
@@ -195,7 +195,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="image-container">
                     <img src="./media/image/I2A/bells.png">
-                    <audio controls><source src="./media/audio/I2A/SSV2A/bells.wav" type="audio/wav"></audio>
+                    <audio controls><source src="./media/audio/I2A/SS2A/bells.wav" type="audio/wav"></audio>
                     <div>Ours</div>
                 </div>
             </div>
@@ -243,7 +243,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="image-container">
                     <img src="./media/image/I2A/pigeons.png">
-                    <audio controls><source src="./media/audio/I2A/SSV2A/pigeons.wav" type="audio/wav"></audio>
+                    <audio controls><source src="./media/audio/I2A/SS2A/pigeons.wav" type="audio/wav"></audio>
                     <div>Ours</div>
                 </div>
             </div>
@@ -291,7 +291,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="image-container">
                     <img src="./media/image/I2A/canon.png">
-                    <audio controls><source src="./media/audio/I2A/SSV2A/canon.wav" type="audio/wav"></audio>
+                    <audio controls><source src="./media/audio/I2A/SS2A/canon.wav" type="audio/wav"></audio>
                     <div>Ours</div>
                 </div>
             </div>
@@ -336,7 +336,7 @@
     <div class="mt-4">
         <h2 class="mb-4" id="v2a">Video-to-Audio Generation</h2>
         <p>
-            Given a video of arbitrary length, SSV2A can generate a highly immersive audio clip to accompany it.
+            Given a video of arbitrary length, SS2A can generate a highly immersive audio clip to accompany it.
         </p>
 
         <!-- Sample 0 -->
@@ -352,7 +352,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="video-container">
                     <video width="100%" height="100%" controls>
-                        <source src="./media/video/SSV2A/erhu.mp4" type="video/mp4">
+                        <source src="./media/video/SS2A/erhu.mp4" type="video/mp4">
                     </video>
                     <div>Ours</div>
                 </div>
@@ -406,7 +406,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="video-container">
                     <video width="100%" height="100%" controls>
-                        <source src="./media/video/SSV2A/cats.mp4" type="video/mp4">
+                        <source src="./media/video/SS2A/cats.mp4" type="video/mp4">
                     </video>
                     <div>Ours</div>
                 </div>
@@ -460,7 +460,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="video-container">
                     <video width="100%" height="100%" controls>
-                        <source src="./media/video/SSV2A/show.mp4" type="video/mp4">
+                        <source src="./media/video/SS2A/show.mp4" type="video/mp4">
                     </video>
                     <div>Ours</div>
                 </div>
@@ -514,7 +514,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="video-container">
                     <video width="100%" height="100%" controls>
-                        <source src="./media/video/SSV2A/sheep.mp4" type="video/mp4">
+                        <source src="./media/video/SS2A/sheep.mp4" type="video/mp4">
                     </video>
                     <div>Ours</div>
                 </div>
@@ -568,7 +568,7 @@
             <div class="col-lg-2 col-md-4 col-sm-6">
                 <div class="video-container">
                     <video width="100%" height="100%" controls>
-                        <source src="./media/video/SSV2A/cello.mp4" type="video/mp4">
+                        <source src="./media/video/SS2A/cello.mp4" type="video/mp4">
                     </video>
                     <div>Ours</div>
                 </div>
@@ -621,7 +621,7 @@
         <img class="mb-4 mm-img" src="./media/image/compose.jpg">
         
         <p>
-            SSV2A supports <b>multimodal sound source composition</b>. This means you can supply any source prompts as text, vision or audio, and mix them together to generate audio contents. In this section, we demonstrate the high controllability our method can achieve in various usage scenarios.
+            SS2A supports <b>multimodal sound source composition</b>. This means you can supply any source prompts as text, vision or audio, and mix them together to generate audio contents. In this section, we demonstrate the high controllability our method can achieve in various usage scenarios.
         </p>
 
         <h3 class="mt-5 mb-2">Visual Composition</h3>
@@ -1016,7 +1016,7 @@
 
         <h3 class="mt-5 mb-2">Visual + Audio Composition</h3>
         <p>
-            You can also compose audio clips with audio sources as conditions. However, SSV2A is not as sensitive to audio conditions as visual/text sources because it ignores the CLIP semantics for audio modality.
+            You can also compose audio clips with audio sources as conditions. However, SS2A is not as sensitive to audio conditions as visual/text sources because it ignores the CLIP semantics for audio modality.
         </p>
 
         <!-- Sample 0 -->
@@ -1081,7 +1081,7 @@
 
         <h3 class="mt-5 mb-2">Visual + Text + Audio Composition</h3>
         <p>
-            Putting it altogether, SSV2A supports a wide range of audio sysnthesis controls with multimodal prompts.
+            Putting it altogether, SS2A supports a wide range of audio sysnthesis controls with multimodal prompts.
         </p>
 
         <div class="row g-4 justify-content-center">
@@ -1235,14 +1235,14 @@
 
     <h3 class="mt-5 mb-2" id="comp">Comparison with Cascaded Composition</h3>
     <p>
-        The most straightforward way to composite multimodal sound sources into a single audio is to generate an audio track for each source condition via video-to-audio or text-to-audio models and <b>overlay</b> them together. However, such a cascading audio synthesis system <b>lacks interaction, context and style awareness</b> when integrating multiple sound sources, which are keys to a convincing audio scene. We show with qualitative examples in this section that <b>our SSV2A composition achieves these features</b>.
+        The most straightforward way to composite multimodal sound sources into a single audio is to generate an audio track for each source condition via video-to-audio or text-to-audio models and <b>overlay</b> them together. However, such a cascading audio synthesis system <b>lacks interaction, context and style awareness</b> when integrating multiple sound sources, which are keys to a convincing audio scene. We show with qualitative examples in this section that <b>our SS2A composition achieves these features</b>.
     </p>
 
     <div class="row g-4 justify-content-center">
         <div class="col-4">
             <h4>Interaction Awareness</h4>
             <p>
-                We generate a drum-only audio clip and a bass-only clip with SSV2A. Simply overlaying these clips yields a mixed track with no instrument interactions. With our SSV2A composition, we are able to generate an appealing piece of drum-bass music with rich interactions.
+                We generate a drum-only audio clip and a bass-only clip with SS2A. Simply overlaying these clips yields a mixed track with no instrument interactions. With our SS2A composition, we are able to generate an appealing piece of drum-bass music with rich interactions.
             </p>
             <div class="image-container">
                 <div class="row g-2 justify-content-center">
@@ -1289,7 +1289,7 @@
 
             <div class="image-container">
                 <div class="row g-2 justify-content-center">
-                    <div class="text-tag">SSV2A Composition</div>
+                    <div class="text-tag">SS2A Composition</div>
                 </div>
                 <div class="row g-2 justify-content-center">
                     <audio controls class="w-80">
@@ -1302,7 +1302,7 @@
         <div class="col-4">
             <h4>Context Awareness</h4>
             <p>
-                We generate an audio clip of a talking man and another clip of police activities. The cascaded composition yields chaotic sounds as the police event context is not perceived. Our SSV2A composition successfully picks up this global cue and generates a police officer's voice followed by a gun loading/shooting sound to indicate police events.
+                We generate an audio clip of a talking man and another clip of police activities. The cascaded composition yields chaotic sounds as the police event context is not perceived. Our SS2A composition successfully picks up this global cue and generates a police officer's voice followed by a gun loading/shooting sound to indicate police events.
             </p>
             <div class="image-container">
                 <div class="row g-2 justify-content-center">
@@ -1347,7 +1347,7 @@
 
             <div class="image-container">
                 <div class="row g-2 justify-content-center">
-                    <div class="text-tag">SSV2A Composition</div>
+                    <div class="text-tag">SS2A Composition</div>
                 </div>
                 <div class="row g-2 justify-content-center">
                     <audio controls class="w-80">
@@ -1360,7 +1360,7 @@
         <div class="col-4">
             <h4>Style Awareness</h4>
             <p>
-                We generate audio clips of a normal speech and an academic conference talk. Cascaded composition synthesizes an audio track with conflicting talkers and no conference room reverb. Our SSV2A composition transfers the speech style into a proper academic presentation with reverb.
+                We generate audio clips of a normal speech and an academic conference talk. Cascaded composition synthesizes an audio track with conflicting talkers and no conference room reverb. Our SS2A composition transfers the speech style into a proper academic presentation with reverb.
             </p>
             <div class="image-container">
                 <div class="row g-2 justify-content-center">
@@ -1405,7 +1405,7 @@
 
             <div class="image-container">
                 <div class="row g-2 justify-content-center">
-                    <div class="text-tag">SSV2A Composition</div>
+                    <div class="text-tag">SS2A Composition</div>
                 </div>
                 <div class="row g-2 justify-content-center">
                     <audio controls class="w-80">
